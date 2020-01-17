@@ -28,7 +28,7 @@ pitchnamesBagpipe = #`(
   (C     . ,(ly:make-pitch 2 0 SHARP))
 )
 pitchnames = \pitchnamesBagpipe
-#(ly:parser-set-note-names pitchnames)
+#(ly:parser-set-note-names parser pitchnames)
 
 % Bagpipe music is written in something like D major. If we use
 % flattened notes, the flat should be shown on all instances.
@@ -66,12 +66,12 @@ showTrueKeySignature = {
 }
 
 \layout {
-  indent = 0.0
+  indent = 0.0\cm
 
   \context {
     \Score
 
-    \remove "Bar_number_engraver"
+    %\remove "Bar_number_engraver"
 
     \override Stem.direction = #down
     \override Slur.direction = #up
@@ -79,6 +79,9 @@ showTrueKeySignature = {
 
     \override VoltaBracketSpanner.Y-extent = #'(-1.5 . 0)
     \override VoltaBracket.height = #2.2
+
+    \override BarNumber.break-visibility = #all-invisible
+    \override TimeSignature.break-visibility = #end-of-line-invisible
   }
 
   \context {
@@ -102,6 +105,7 @@ showTrueKeySignature = {
     \Voice
 
     \override TupletBracket.bracket-visibility = ##t
+    \override Beam.positions = #'(-4.5 . -4.5)
   }
 }
 
@@ -133,15 +137,30 @@ marchTime = {
 }
 
 % Add appropriate tweaks needed for piping grace notes to look great.
-stemspace = #(define-music-function (extent) (pair?) #{
+stemspace = #(define-music-function (parser location extent) (pair?) #{
   \once \override Staff.Stem.X-extent = #extent
 #})
-pgrace = #(define-music-function (notes) (ly:music?) #{
-  \override Score.GraceSpacing.spacing-increment = #0
-  \override Score.Stem.beamlet-max-length-proportion = #'(0.5 . 0.5)
-  \small \grace $notes \normalsize
-  \revert Score.Stem.beamlet-default-length
+
+% pgrace = #(define-music-function (parser location notes) (ly:music?) #{
+%   \override Score.GraceSpacing.spacing-increment = #0
+%   \override Score.Stem.beamlet-max-length-proportion = #'(0.5 . 0.5)
+%   \small \grace $notes \normalsize
+%   \revert Score.Stem.beamlet-default-length
+% #})
+
+pgrace = #(define-music-function (parser location notes) (ly:music?) #{
+  \once \override Score.GraceSpacing.spacing-increment = #0
+  \once \override Score.Stem.beamlet-max-length-proportion = #'(0.5 . 0.5)
+  \once \override Voice.Stem.font-size = #-10
+  \once \override Beam.beam-thickness = #0.2
+  \once \override Beam.length-fraction = #0.5
+  \once \override Beam.positions = #'(5 . 5)
+  %%\once \override Score.SpacingSpanner.strict-note-spacing = ##t
+  %%\once \override #'(font-size . 1)
+  \teeny \grace $notes \normalsize
 #})
+
+
 morespace = \once \override NoteColumn.X-offset = 0.5
 
 % Single grace notes
