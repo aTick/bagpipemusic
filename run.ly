@@ -27,4 +27,32 @@
  }
 
 % The tune to generate.
-\include "jigs/braes_of_mellinish.ly"
+%% \include "jigs/spice_of_life.ly"
+%% \include "others/neil_barrs_bulgarised_bouzouki.ly"
+%{
+\book {
+ \bookpart {\include "6-8_marches/farewell_to_the_creeks.ly"}
+ \bookpart {\include "6-8_marches/pipe_major_donald_mclean_of_lewis.ly"}
+}
+%}
+
+
+\book{
+  \header {
+    tagline = ""
+  }
+  \include "reels/sleepy_maggie.ly"
+  \include "reels/poisoned_dwarf.ly"
+}
+
+
+
+%%\header{tagline=""}
+%%\include "jigs/kenny_gillies_of_portnalong_skye.ly"
+
+%%\include "6-8_marches/pipe_major_donald_mclean_of_lewis.ly"
+%%\include "The_Chieftains_2020/an-dro.ly"
+%%\include "The_Chieftains_2020/san-patricio-march.ly"
+%%\include "The_Chieftains_2020/an-dro.ly"
+%%\include "jigs/spice_of_life.ly"
+%%\include "reels/poisoned_dwarf.ly"
