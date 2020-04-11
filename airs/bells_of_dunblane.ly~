@@ -1,0 +1,10 @@
+\score {
+  {
+    \bagpipeKey
+    \time 4/4
+
+    \partial 4 a8. \grc c16 |
+    \dble e2~ e8 \grg e8 f A |
+    %%e16 c8.
+    
+}
