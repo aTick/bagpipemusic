@@ -40,6 +40,20 @@
 	\grd c2. \grg a8 \grd a8
       }
       {
+	\grd c16 a8.~ a4. e8 f A
+      }
+    }
+
+    \repeat volta 2 {
+      e16 c8.~ c4. \grg c8 d16 c b8 |
+      \grg c16 e8.~ e4. \gra e8 f [A] |
+      e16 c8.~ c4. \grg c8 d8. b16 |
+    }
+    \alternative {
+      {
+	\grG a2~ \autoBeamOff a8 e8 f [A] \autoBeamOn |
+      }
+      {
 	\grG a1
       }
     }
